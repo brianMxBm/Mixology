@@ -6,4 +6,8 @@ export default {
   tabsBackground: '#000000',
   tabsActive: '#c6a990',
   tabsInactive: '#FFFFFF',
+  gray: '#ccc',
+  placeholderText: '#666',
+  buttons: '#c6a990',
+  links: '#FFFFFF',
 };
