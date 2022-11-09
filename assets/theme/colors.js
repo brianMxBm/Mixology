@@ -10,4 +10,8 @@ export default {
   placeholderText: '#666',
   buttons: '#c6a990',
   links: '#FFFFFF',
+  pill: '#D2FFBD',
+  pink: '#FBD3FF',
+  rating: '#ffe45c',
+  like: '#ff5280',
 };
