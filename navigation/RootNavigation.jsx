@@ -3,6 +3,7 @@ import { Screens } from '../constants/ScreenHub';
 import Tabs from './Tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import NewLoginScreen from '../assets/screens/NewLoginScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,8 +15,7 @@ export default function RootNavigation() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="Login" component={Screens.LoginScreen} />
-        <Stack.Screen name="Register" component={Screens.RegisterScreen} />
+        <Stack.Screen name="Login" component={NewLoginScreen} />
         <Stack.Screen name="Tabs" component={Tabs} />
         <Stack.Screen name="Home" component={Screens.HomeScreen} />
         <Stack.Screen name="Drink" component={Screens.DrinkScreen} />
