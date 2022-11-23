@@ -26,14 +26,11 @@ export default function Header() {
   return (
     <SafeAreaView>
       <View style={styles.headerWrapper}>
-        <TouchableOpacity onPress={() => console.log('Profile Clicked')}>
-          <Image
-            source={require('C:/Users/Brian/Desktop/Mixology/assets/profilePicture.png')}
-            style={styles.profileImage}
-          />
-        </TouchableOpacity>
         <TouchableOpacity onPress={() => console.log('Menu Clicked')}>
           <Icon type={Icons.Feather} size={25} color={colors.black} name="menu"></Icon>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => console.log('Profile Clicked')}>
+          <Image source={require('../images/profilePicture.png')} style={styles.profileImage} />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
