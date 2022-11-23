@@ -89,13 +89,8 @@ const styles = StyleSheet.create({
 const drinkData = [
   {
     id: '1',
-    image: require('C:/Users/Brian/Desktop/Mixology/assets/martiniData.png'),
+    image: require('../images/martiniData.png'),
     title: 'Martini Bomb',
-  },
-  {
-    id: '2',
-    image: require('C:/Users/Brian/Desktop/Mixology/assets/eggnogData.png'),
-    title: 'Virgin Eggnog',
   },
 ];
 
