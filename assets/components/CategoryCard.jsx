@@ -3,6 +3,8 @@ import React from 'react';
 import { useFontLoader } from '../../hooks/useFonts';
 import colors from '../theme/colors';
 import { HEIGHT, WIDTH } from '../../constants/dimensions';
+import { useNavigation } from '@react-navigation/native';
+
 const styles = StyleSheet.create({
   categoriesWrapper: {
     marginTop: 30,
@@ -56,56 +58,71 @@ const categoriesData = [
   //TODO: Remove with queried categories (local)
   {
     id: '1',
-    image: require('C:/Users/Brian/Desktop/Mixology/assets/wine.png'),
+    image: require('../images/drinkIcons/wine.png'),
     title: 'Wine',
     selected: true,
   },
   {
     id: '2',
-    image: require('C:/Users/Brian/Desktop/Mixology/assets/martini.png'),
-    title: 'Spirits',
+    image: require('../images/drinkIcons/brandy.png'),
+    title: 'Brandy',
     selected: false,
   },
   {
     id: '3',
-    image: require('C:/Users/Brian/Desktop/Mixology/assets/beer.png'),
-    title: 'Beer',
+    image: require('../images/drinkIcons/gin.png'),
+    title: 'Gin ',
     selected: false,
   },
   {
     id: '4',
-    image: require('C:/Users/Brian/Desktop/Mixology/assets/gin.png'),
-    title: 'Gin',
+    image: require('../images/drinkIcons/beer.png'),
+    title: 'Beer',
+    selected: false,
+  },
+  {
+    id: '5',
+    image: require('../images/drinkIcons/martini.png'),
+    title: 'Martini',
+    selected: false,
+  },
+  {
+    id: '6',
+    image: require('../images/drinkIcons/tequilla.png'),
+    title: 'Tequila',
     selected: false,
   },
 ];
 
-const renderCategoryItem = ({ item }) => {
-  return (
-    <TouchableOpacity onPress={() => console.log(item.title)}>
-      <View style={{ height: HEIGHT * 0.19 }}>
-        <View
-          style={[
-            styles.categoryItemWrapper,
-            {
-              marginLeft: item.id == 1 ? 20 : 0,
-            },
-          ]}
-        >
-          <Image source={item.image} style={styles.categoryItemImage} />
-          <Text style={styles.categoryItemTitle}>{item.title}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>
-  );
-};
-
 export default function CategoryCard() {
   const fontsLoaded = useFontLoader();
+  const navigation = useNavigation();
 
   if (!fontsLoaded) {
     return <></>;
   }
+
+  function renderCategoryItem({ item }) {
+    const lowerCaseTitle = item.title.toLowerCase();
+    return (
+      <TouchableOpacity onPress={() => navigation.navigate('Drink', { category: lowerCaseTitle })}>
+        <View style={{ height: HEIGHT * 0.19 }}>
+          <View
+            style={[
+              styles.categoryItemWrapper,
+              {
+                marginLeft: item.id == 1 ? 20 : 0,
+              },
+            ]}
+          >
+            <Image source={item.image} style={styles.categoryItemImage} />
+            <Text style={styles.categoryItemTitle}>{item.title}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
   return (
     <View style={styles.categoriesWrapper}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
