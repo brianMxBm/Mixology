@@ -26,4 +26,12 @@ export const BottomTabArray = [
     inActiveIcon: 'user-o',
     component: Screens.ProfileScreen,
   },
+  {
+    name: 'Settings',
+    label: 'Settings',
+    type: Icons.Ionicons,
+    activeIcon: 'settings',
+    inActiveIcon: 'settings-outline',
+    component: Screens.SettingsScreen,
+  },
 ];
