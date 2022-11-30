@@ -105,7 +105,9 @@ export default function CategoryCard() {
   function renderCategoryItem({ item }) {
     const lowerCaseTitle = item.title.toLowerCase();
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('Drink', { category: lowerCaseTitle })}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Category', { category: lowerCaseTitle })}
+      >
         <View style={{ height: HEIGHT * 0.19 }}>
           <View
             style={[

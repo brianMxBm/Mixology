@@ -6,6 +6,7 @@ import ForgotPasswordScreen from '../assets/screens/ForgotPasswordScreen';
 import RegisterScreen from '../assets/screens/RegisterScreen';
 import OnboardingScreen from '../assets/screens/OnboardingScreen';
 import SettingsScreen from '../assets/screens/SettingsScreen';
+import DrinkCategoryScreen from '../assets/screens/DrinkCategoryScreen';
 export const Screens = {
   HomeScreen,
   ProfileScreen,
@@ -15,4 +16,5 @@ export const Screens = {
   ForgotPasswordScreen,
   OnboardingScreen,
   SettingsScreen,
+  DrinkCategoryScreen,
 };
