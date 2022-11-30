@@ -1,10 +1,16 @@
 import React, { useEffect, useRef } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import Icon, { Icons } from '../assets/theme/icons';
+import colors from '../assets/theme/colors';
+import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { TABS } from '../constants/dimensions';
 import { BottomTabArray } from '../constants/BottomTabArray';
-import Icon from '../assets/theme/icons';
-import colors from '../assets/theme/colors';
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  color,
+} from 'react-native-reanimated';
 import * as Animatable from 'react-native-animatable';
 
 const styles = StyleSheet.create({
@@ -13,39 +19,62 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  btn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 5,
+    paddingHorizontal: 15,
+  },
 });
 
 const Tab = createBottomTabNavigator();
 
 export function TabButton(props) {
+  /* Refactor the conditional rendering, I'm under time crunch so I did it poorly.*/
+
   const { item, onPress, accessibilityState } = props;
   const focused = accessibilityState.selected;
   const viewRef = useRef(null);
-
-  useEffect(() => {
-    if (focused) {
-      viewRef.current.animate({
-        0: { scale: 0.5, rotate: '0deg' },
-        1: { scale: 1, rotate: '0deg' },
-      });
-    } else {
-      viewRef.current.animate({
-        0: { scale: 1.2, rotate: '0deg' },
-        1: { scale: 1, rotate: '0deg' },
-      });
-    }
-  }, [focused]);
-
+  const textViewRef = useRef(null);
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={1} style={styles.container}>
-      <Animatable.View ref={viewRef} duration={500} style={styles.container}>
-        <Icon
-          type={item.type}
-          name={focused ? item.activeIcon : item.inActiveIcon}
-          color={focused ? colors.tabsActive : colors.tabsActive} //TODO: Possibly change color.
-          size={30}
-        />
-      </Animatable.View>
+    <TouchableOpacity
+      onPress={onPress}
+      activeOpacity={1}
+      style={[styles.container, { flex: focused ? 1 : 0.65 }]}
+    >
+      <View>
+        {focused ? (
+          <Animatable.View
+            ref={viewRef}
+            style={[
+              StyleSheet.absoluteFillObject,
+              { backgroundColor: colors.orange, borderRadius: 16 },
+            ]}
+          />
+        ) : null}
+
+        <View style={[styles.btn]}>
+          {focused ? (
+            <Icon type={item.type} name={item.inActiveIcon} color={colors.white} size={24} />
+          ) : (
+            <Icon type={item.type} name={item.inActiveIcon} color={colors.black} size={24} />
+          )}
+          <Animatable.View>
+            {focused && (
+              <Text
+                style={{
+                  color: colors.white,
+                  paddingHorizontal: 5,
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                }}
+              >
+                {item.label}
+              </Text>
+            )}
+          </Animatable.View>
+        </View>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -56,14 +85,9 @@ export default function Tabs() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height: TABS.HEIGHT,
-          backgroundColor: colors.tabsBackground,
-          paddingTop: 8,
-          borderRadius: 25,
-          paddingHorizontal: 15,
-          overflow: 'hidden',
-          alignItems: 'center',
-          justifyContent: 'center',
+          flexDirection: 'row',
+          paddingBottom: 10,
+          paddingHorizontal: 12,
         },
       }}
     >

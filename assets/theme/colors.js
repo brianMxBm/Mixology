@@ -10,4 +10,11 @@ export default {
   placeholderText: '#666',
   buttons: '#c6a990',
   links: '#FFFFFF',
+  green: '#29b314',
+  pink: '#FBD3FF',
+  rating: '#ffe45c',
+  like: '#ff5280',
+  orange: '#ff6c17',
+  lightOrange: '#ffcea3',
+  lightGray: '#ede9e8',
 };
