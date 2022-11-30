@@ -1,45 +1,37 @@
-import { View, Text, StyleSheet, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import DrinkCard from '../components/DrinkCard';
-import SimpleDrinkCard from '../components/SimpleDrinkCard';
-import { db } from '../../client/firebase-config';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import colors from '../theme/colors';
+import { View, Text, SafeAreaView, FlatList } from 'react-native';
+import React from 'react';
+import DrinkCategoryHeader from '../components/DrinkHeader';
+import SearchBar from '../components/SearchBar';
+import { WIDTH } from '../../constants/dimensions';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
-export default function DrinkScreen({ route }) {
-  //const [loading, setLoading] = useState(true);
+export default function DrinkScreen() {
   const [drinks, setDrinks] = useState([]);
-  const { category } = route.params;
-
+  //const [loading, setLoading] = useState(true);
   const getDrinks = async () => {
+    //TODO: Implement with redux
+    const drinkData = new Array();
     const queryDrink = query(collection(db, 'drinks'), where('category ', '==', category));
     const querySnapShot = await getDocs(queryDrink);
     querySnapShot.forEach((doc) => {
-      setDrinks(doc.data());
+      drinkData.push(doc.data());
     });
+    console.log(drinkData);
+    setDrinks(drinkData);
   };
-
-  useEffect(() => {
-    getDrinks();
-    console.log(drinks);
-  }, []);
-
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        numColumns={2}
-        data={drinks}
-        renderItem={({ item }) => <SimpleDrinkCard food={item} />}
-      />
+    <SafeAreaView>
+      <DrinkCategoryHeader />
+      <View style={{ marginTop: 20 }}>
+        <SearchBar barStyle={{ width: WIDTH * 0.5 }} />
+      </View>
+      <View>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          numColumns={2}
+          data={drinks}
+          renderItem={({ item }) => <SimpleDrinkCard drink={item} />}
+        />
+      </View>
     </SafeAreaView>
   );
 }
