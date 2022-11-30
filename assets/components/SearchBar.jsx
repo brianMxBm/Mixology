@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SearchBar({ searchScreen, style }) {
+export default function SearchBar({ searchScreen, style, barStyle }) {
   return (
     <View style={[style, styles.mainSearchContainer]}>
       {searchScreen ? (
@@ -49,7 +49,7 @@ export default function SearchBar({ searchScreen, style }) {
           />
         </View>
       ) : (
-        <TouchableOpacity style={styles.searchContainer}>
+        <TouchableOpacity style={[barStyle, styles.searchContainer]}>
           <View style={styles.vwSearch}>
             <Icon type={Icons.FontAwesome} size={24} color={colors.black} name="search" />
           </View>
