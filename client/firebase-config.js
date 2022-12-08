@@ -1,11 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from '@firebase/firestore';
-import { firebaseKey } from 'react-native-dotenv';
+import { getAuth } from 'firebase/auth';
 // Your web app's Firebase configuration
 
 const firebaseConfig = {
-  apiKey: firebaseKey,
+  apiKey: 
   projectId: 'mixology-56945',
   storageBucket: 'mixology-56945.appspot.com',
   messagingSenderId: '794862437647',
@@ -15,3 +15,4 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+export const auth = getAuth();
