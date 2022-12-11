@@ -15,24 +15,31 @@ const styles = StyleSheet.create({
 });
 
 export default function DrinkCategoryScreen({ route }) {
-  //const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [drinks, setDrinks] = useState([]);
   const { category } = route.params;
-
+  console.log(category.toString() + '..');
   const getDrinks = async () => {
     //TODO: Implement with redux
     const drinkData = new Array();
     const queryDrink = query(collection(db, 'drinks'), where('category ', '==', category));
     const querySnapShot = await getDocs(queryDrink);
     querySnapShot.forEach((doc) => {
-      drinkData.push(doc.data());
+      //TODO: Add paginiation
+      drinkData.push({
+        image: doc.data().image,
+        name: doc.data().name,
+        category: doc.data()['category '],
+        ingredients: doc.data().ingredients,
+        instructions: doc.data().instructions,
+      });
     });
-    console.log(drinkData);
     setDrinks(drinkData);
   };
 
   useEffect(() => {
     getDrinks();
+    console.log(drinks);
   }, []);
 
   return (
