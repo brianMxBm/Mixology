@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView, FlatList } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import DrinkCategoryHeader from '../components/DrinkHeader';
 import SearchBar from '../components/SearchBar';
 import { WIDTH } from '../../constants/dimensions';
