@@ -7,11 +7,10 @@ import Icon, { Icons } from '../theme/icons';
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 30,
     paddingHorizontal: 20,
   },
   dayTitle: {
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Avenir-Roman',
     fontSize: 16,
   },
   popularCardWrapper: {
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     flexDirection: 'row',
     overflow: 'hidden',
-    width: WIDTH * 0.89,
+    width: WIDTH * 0.9,
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   rating: {
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Avenir-Roman',
     fontSize: 15,
     color: colors.textDark,
     marginLeft: 5,
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
   },
   popularTopText: {
     marginLeft: 5,
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Avenir-Roman',
     fontSize: 20,
   },
   popularTitlesWrapper: {
@@ -74,12 +73,12 @@ const styles = StyleSheet.create({
     marginLeft: -20,
   },
   popularTitlesTitle: {
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Avenir-Roman',
     fontSize: 14,
     color: colors.black,
   },
   popularTitlesWeight: {
-    fontFamily: 'MontserratMedium',
+    fontFamily: 'Avenir-Roman',
     fontSize: 12,
     color: colors.black,
     marginTop: 5,
