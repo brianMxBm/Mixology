@@ -68,6 +68,78 @@ const styles = StyleSheet.create({
   },
 });
 
+const drinkArray = [
+  {
+    id: '1',
+    instructions:
+      'Straight: Pour all ingredients into mixing glass with ice cubes. Shake well. Strain in chilled martini cocktail glass. Cut passion fruit in half and use as garnish. Pour prosecco into a chilled shot glass and serve alongside the martini.',
+    name: 'Porn Star Martini',
+    image: require('../images/drinkIcons/sake.png'),
+    category: 'vodka',
+    ingredients: [
+      {
+        id: 0,
+        title: '3 cl (3 parts) vodka',
+      },
+      {
+        id: 1,
+        title: '3 cl (3 parts) Passoa',
+      },
+      {
+        id: 2,
+        title: '1 cl (1 parts) passion fruit juice',
+      },
+      {
+        id: 3,
+        title: '1 cl (1 parts) lime juice',
+      },
+    ],
+  },
+  {
+    id: '0',
+    instructions:
+      'The shot of sake is dropped into the beer, causing it to fizz violently. The drink should then be consumed immediately.',
+    name: 'Sake Bomb',
+    image: require('../images/drinkIcons/sake.png'),
+    category: 'sake',
+    ingredients: [
+      {
+        id: 0,
+        title: '1 pint (~16 parts) beer',
+      },
+      {
+        id: 1,
+        title: '1 shot (1.5 parts) sake',
+      },
+    ],
+  },
+  {
+    id: '2',
+    instructions: 'Shake or stir with ice.',
+    name: 'Chicago Cocktail',
+    image: require('../images/drinkIcons/sake.png'),
+    category: 'brandy',
+    ingredients: [
+      {
+        id: 0,
+        title: 'Brandy',
+      },
+      {
+        id: 1,
+        title: 'Triple sec',
+      },
+      {
+        id: 2,
+        title: 'Bitters',
+      },
+      {
+        id: 3,
+        title: 'Champagne (optional)',
+      },
+    ],
+  },
+];
+
 export default function ProfileScreen() {
   const user = useContext(UserContext);
   const [currUser, setCurrUser] = useState();
@@ -88,7 +160,7 @@ export default function ProfileScreen() {
 
   if (!currUser) {
     //TODO: This is a buffer, there's a slight amount of time where the DOM doesn't get the user info so it says it's undefined. DOM renders first that's why.
-    return <Text style={{ paddingTop: 250, paddingLeft: 150 }}>Loading..</Text>;
+    return userDontExist(currUser);
   }
 
   const newarr = new Array();
@@ -100,92 +172,79 @@ export default function ProfileScreen() {
     console.log('no favorites');
   }
 
-  const drinkArray = [
-    {
-      id: '1',
-      instructions:
-        'Straight: Pour all ingredients into mixing glass with ice cubes. Shake well. Strain in chilled martini cocktail glass. Cut passion fruit in half and use as garnish. Pour prosecco into a chilled shot glass and serve alongside the martini.',
-      name: 'Porn Star Martini',
-      image: require('../images/drinkIcons/sake.png'),
-      ingredients: [
-        {
-          id: 0,
-          title: '3 cl (3 parts) vodka',
-        },
-        {
-          id: 1,
-          title: '3 cl (3 parts) Passoa',
-        },
-        {
-          id: 2,
-          title: '1 cl (1 parts) passion fruit juice',
-        },
-        {
-          id: 3,
-          title: '1 cl (1 parts) lime juice',
-        },
-      ],
-    },
-    {
-      id: '0',
-      instructions:
-        'The shot of sake is dropped into the beer, causing it to fizz violently. The drink should then be consumed immediately.',
-      name: 'Sake Bomb',
-      image: require('../images/drinkIcons/sake.png'),
-      ingredients: [
-        {
-          id: 0,
-          title: '1 pint (~16 parts) beer',
-        },
-        {
-          id: 1,
-          title: '1 shot (1.5 parts) sake',
-        },
-      ],
-    },
-    {
-      id: '2',
-      instructions: 'Shake or stir with ice.',
-      name: 'Chicago Cocktail',
-      image: require('../images/drinkIcons/sake.png'),
-      ingredients: [
-        {
-          id: 0,
-          title: 'Brandy',
-        },
-        {
-          id: 1,
-          title: 'Triple sec',
-        },
-        {
-          id: 2,
-          title: 'Bitters',
-        },
-        {
-          id: 3,
-          title: 'Champagne (optional)',
-        },
-      ],
-    },
-  ];
+  return userExists(currUser);
+}
 
-  const renderCategoryItem = ({ item }) => {
-    return (
-      <TouchableOpacity onPress={() => console.log(item.name)}>
-        <View style={styles.container}>
-          <View style={styles.cardWrapper}>
-            <View style={styles.favoritesLeftSide}>
-              <Image source={item.image} style={styles.drinkItem} />
-            </View>
-            <View style={styles.favoritesRightSide}>
-              <Text style={styles.categoryItemTitle}>{item.name}</Text>
-              <Image source={item.image} style={styles.drinkCategory} />
-            </View>
+const renderCategoryItem = ({ item }) => {
+  var categorystring;
+
+  switch (item.category) {
+    case 'vodka':
+      categorystring = require('../images/drinkIcons/vodka.png');
+      break;
+    case 'sake':
+      categorystring = require('../images/drinkIcons/sake.png');
+      break;
+    case 'whiskey':
+      categorystring = require('../images/drinkIcons/whiskey.png');
+      break;
+    case 'brandy':
+      categorystring = require('../images/drinkIcons/brandy.png');
+      break;
+    case 'beer':
+      categorystring = require('../images/drinkIcons/beer.png');
+      break;
+    case 'bourbon':
+      categorystring = require('../images/drinkIcons/bourbon.png');
+      break;
+    case 'gin':
+      categorystring = require('../images/drinkIcons/gin.png');
+      break;
+    case 'tequila':
+      categorystring = require('../images/drinkIcons/tequilla.png');
+      break;
+    case 'wine':
+      categorystring = require('../images/drinkIcons/wine.png');
+      break;
+  }
+
+  return (
+    <TouchableOpacity onPress={() => console.log(item.name)}>
+      <View style={styles.container}>
+        <View style={styles.cardWrapper}>
+          <View style={styles.favoritesLeftSide}>
+            <Image source={item.image} style={styles.drinkItem} />
+          </View>
+          <View style={styles.favoritesRightSide}>
+            <Text style={styles.categoryItemTitle}>{item.name}</Text>
+            <Image source={categorystring} style={styles.drinkCategory} />
           </View>
         </View>
-      </TouchableOpacity>
-    );
-  };
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+function userDontExist() {
+  return (
+    <View style={styles.container}>
+      <SafeAreaView>
+        <View style={{ alignItems: 'center' }}>
+          <Image
+            source={require('../images/profilePicture.png')}
+            style={{ height: 200, width: 200 }}
+          />
+          <View>
+            <Text style={{ fontSize: 50, fontWeight: 'bold', left: 20 }}>Guest</Text>
+            <Text style={{ fontSize: 50 }}>Favorites</Text>
+          </View>
+        </View>
+      </SafeAreaView>
+    </View>
+  );
+}
+
+function userExists(currUser) {
   return (
     <View style={styles.container}>
       <SafeAreaView>
