@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Animated } from 'react-native';
 import { auth, db } from '../../client/firebase-config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -11,6 +11,8 @@ import SubmitButton from '../components/SubmitButton';
 import CustomFormik from '../components/CustomFormik';
 import colors from '../theme/colors';
 import * as yup from 'yup';
+import Avatar from '../components/Avatar';
+import CustomBottomSheet from '../components/CustomBottomSheet';
 
 const initialValues = {
   email: '',
@@ -56,12 +58,12 @@ export default function RegisterScreen({ navigation }) {
     text: '',
     type: '',
   });
+  const sheetRef = useRef(null);
   const handleSignUp = async (values, formikActions) => {
     await createUserWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
-        formikActions.setSubmitting(false);
-        return setDoc(doc(db, 'users', userCredential.user.uid), {
-          name: values.name,
+        console.log('creating doc');
+        setDoc(doc(db, 'users', userCredential.user.uid), {
           userName: values.userName,
           email: values.email,
           favorites: [],
@@ -71,13 +73,15 @@ export default function RegisterScreen({ navigation }) {
         });
       })
       .catch((error) => {
-        updateNotification(setMessage, error.message);
-        console.log(message);
+        if (error.code) {
+          updateNotification(setMessage, 'Registration Failed');
+        }
       }); //TODO: Implement actual error handling.
   };
 
   return (
     <AuthLayout subTitle="Are you Ready?" title="Register">
+      <Avatar onPress={() => sheetRef.current.open()} />
       <View style={styles.registerContainer}>
         {message.text ? <Animated.Alert type={message.type} text={message.text} /> : null}
         <CustomFormik
@@ -97,7 +101,7 @@ export default function RegisterScreen({ navigation }) {
             label="Username"
             keyboardType="email-address"
             placeholder="Username"
-            containerStyle={{ marginTop: 100 }}
+            containerStyle={{ marginTop: 20 }}
             included={true}
           />
           <Input
@@ -105,7 +109,7 @@ export default function RegisterScreen({ navigation }) {
             label="Password"
             secure={!showPass}
             placeholder="Password"
-            containerStyle={{ marginTop: 100 }}
+            containerStyle={{ marginTop: 20 }}
             autoCompleteType="password"
             appendComponent={
               <TouchableOpacity
@@ -128,7 +132,7 @@ export default function RegisterScreen({ navigation }) {
             label="Confirm Password"
             secure={!showConfirmPass}
             placeholder="Password"
-            containerStyle={{ marginTop: 100 }}
+            containerStyle={{ marginTop: 20 }}
             autoCompleteType="password"
             appendComponent={
               <TouchableOpacity
@@ -152,7 +156,7 @@ export default function RegisterScreen({ navigation }) {
               height: 55,
               borderRadius: 12,
               backgroundColor: colors.orange,
-              marginTop: 120,
+              marginTop: 20,
             }}
             labelStyle={{ fontWeight: 'bold', color: colors.white }}
           />
@@ -177,6 +181,7 @@ export default function RegisterScreen({ navigation }) {
           />
         </View>
       </View>
+      <CustomBottomSheet ref={sheetRef} />
     </AuthLayout>
   );
 }
