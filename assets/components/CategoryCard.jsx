@@ -7,15 +7,15 @@ import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   categoriesWrapper: {
-    marginTop: 30,
+    marginTop: 20,
   },
   categoriesTitle: {
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Avenir-Roman',
     fontSize: 16,
     paddingHorizontal: 20,
   },
   seeAllStyle: {
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Avenir-Roman',
     fontSize: 16,
     paddingHorizontal: 20,
   },
@@ -24,21 +24,20 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   categoryItemWrapper: {
-    backgroundColor: colors.gray,
     marginRight: 20,
     borderRadius: 20,
-    shadowColor: colors.black,
+    shadowColor: colors.orange,
     shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.5,
     shadowRadius: 9,
     height: HEIGHT * 0.16,
     borderColor: colors.black,
-    borderWidth: 1.8,
+    borderWidth: 1.9,
   },
   categoryItemTitle: {
     textAlign: 'center',
-    fontFamily: 'MontserratBold',
-    fontSize: 14,
+    fontFamily: 'Avenir-Roman',
+    fontSize: 15,
     marginTop: 10,
   },
   categoryItemImage: {
@@ -55,7 +54,6 @@ const styles = StyleSheet.create({
 });
 
 const categoriesData = [
-  //TODO: Remove with queried categories (local)
   {
     id: '1',
     image: require('../images/drinkIcons/wine.png'),
@@ -71,7 +69,7 @@ const categoriesData = [
   {
     id: '3',
     image: require('../images/drinkIcons/gin.png'),
-    title: 'Gin ',
+    title: 'Gin',
     selected: false,
   },
   {
@@ -82,14 +80,26 @@ const categoriesData = [
   },
   {
     id: '5',
-    image: require('../images/drinkIcons/martini.png'),
-    title: 'Martini',
+    image: require('../images/drinkIcons/vodka.png'),
+    title: 'Vodka',
     selected: false,
   },
   {
     id: '6',
     image: require('../images/drinkIcons/tequilla.png'),
     title: 'Tequila',
+    selected: false,
+  },
+  {
+    id: '7',
+    image: require('../images/drinkIcons/sake.png'),
+    title: 'Sake',
+    selected: false,
+  },
+  {
+    id: '8',
+    image: require('../images/drinkIcons/scotch.png'),
+    title: 'Scotch',
     selected: false,
   },
 ];

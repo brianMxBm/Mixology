@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   titleStyle: {
     fontSize: 30,
     fontWeight: 'bold',
-    fontFamily: 'MontserratBold',
+    fontFamily: 'Avenir-Roman',
   },
   descriptionStyle: {
     marginTop: 12,
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontSize: 15,
     paddingHorizontal: 24,
-    fontFamily: 'MontserratMedium',
+    fontFamily: 'Avenir-Roman',
   },
   dotsContainer: {
     flexDirection: 'row',

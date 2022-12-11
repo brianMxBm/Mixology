@@ -3,23 +3,24 @@ import React from 'react';
 import Icon, { Icons } from '../theme/icons';
 import colors from '../theme/colors';
 import { WIDTH, HEIGHT } from '../../constants/dimensions';
+import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   mainSearchContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: colors.black,
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.8,
+    shadowOffset: { width: 6, height: 10 },
+    shadowOpacity: 0.3,
     shadowRadius: 3,
   },
   searchContainer: {
     flexDirection: 'row',
     backgroundColor: colors.white,
-    width: WIDTH * 0.88,
+    width: WIDTH * 0.9,
     height: HEIGHT * 0.06,
-    borderRadius: 25,
-    borderWidth: 1.3,
+    borderRadius: 15,
+    borderWidth: 0.5,
   },
   vwSearch: {
     flex: 0.2,
@@ -28,13 +29,16 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    fontFamily: 'MontserratBold',
-    fontSize: 15,
-    letterSpacing: 2,
+    fontFamily: 'Avenir-Roman',
+    fontSize: 18,
+    fontWeight: 'bold',
+    letterSpacing: 0.4,
+    marginHorizontal: 20,
   },
 });
 
 export default function SearchBar({ searchScreen, style, barStyle }) {
+  const navigation = useNavigation();
   return (
     <View style={[style, styles.mainSearchContainer]}>
       {searchScreen ? (
@@ -49,11 +53,14 @@ export default function SearchBar({ searchScreen, style, barStyle }) {
           />
         </View>
       ) : (
-        <TouchableOpacity style={[barStyle, styles.searchContainer]}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Drink')}
+          style={[barStyle, styles.searchContainer]}
+        >
+          <Text style={[styles.textInput, { paddingTop: 15 }]}>Search For Cocktails...</Text>
           <View style={styles.vwSearch}>
-            <Icon type={Icons.FontAwesome} size={24} color={colors.black} name="search" />
+            <Icon type={Icons.FontAwesome} size={20} color={colors.black} name="search" />
           </View>
-          <Text style={[styles.textInput, { paddingTop: 15 }]}>Search Cocktails</Text>
         </TouchableOpacity>
       )}
     </View>

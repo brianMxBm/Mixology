@@ -1,11 +1,10 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { KeyboardAvoidingView } from 'react-native';
 import React from 'react';
 import colors from '../theme/colors';
 
 const styles = StyleSheet.create({
   authContainer: {
-    flex: 1,
     paddingHorizontal: 24,
     backgroundColor: colors.white,
   },
@@ -16,7 +15,7 @@ const styles = StyleSheet.create({
 
 export default function AuthLayout({ title, subTitle, titleContainerStyle, children }) {
   return (
-    <View style={styles.authContainer}>
+    <ScrollView style={styles.authContainer}>
       <KeyboardAvoidingView
         keyBoardDismissMode="on-drag"
         contentContainerStyle={{ flex: 1, paddingHorizontal: 24 }}
@@ -28,6 +27,6 @@ export default function AuthLayout({ title, subTitle, titleContainerStyle, child
         </View>
         {children}
       </KeyboardAvoidingView>
-    </View>
+    </ScrollView>
   );
 }

@@ -89,7 +89,7 @@ export default function LoginScreen({ navigation }) {
             label="Password"
             secure={!showPass}
             placeholder="Password"
-            containerStyle={{ marginTop: 100 }}
+            containerStyle={{ marginTop: 20 }}
             autoCompleteType="password"
             appendComponent={
               <TouchableOpacity
@@ -107,7 +107,7 @@ export default function LoginScreen({ navigation }) {
               </TouchableOpacity>
             }
           />
-          <View style={{ flexDirection: 'row', marginTop: 100, justifyContent: 'space-between' }}>
+          <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'space-between' }}>
             <LoginSwitch value={saveMe} onChange={(value) => setSaveMe(value)} />
             <TextButton
               label="Forgot Password"

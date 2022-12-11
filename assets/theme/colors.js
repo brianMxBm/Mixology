@@ -17,4 +17,5 @@ export default {
   orange: '#ff6c17',
   lightOrange: '#ffcea3',
   lightGray: '#ede9e8',
+  lightBlack: '#949494',
 };
