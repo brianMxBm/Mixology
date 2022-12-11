@@ -57,7 +57,7 @@ export function TabButton(props) {
           {focused ? (
             <Icon type={item.type} name={item.inActiveIcon} color={colors.white} size={24} />
           ) : (
-            <Icon type={item.type} name={item.inActiveIcon} color={colors.black} size={24} />
+            <Icon type={item.type} name={item.inActiveIcon} color={colors.orange} size={24} />
           )}
           <Animatable.View>
             {focused && (
@@ -88,6 +88,8 @@ export default function Tabs() {
           flexDirection: 'row',
           paddingBottom: 10,
           paddingHorizontal: 12,
+          backgroundColor: colors.black,
+          borderRadius: 10,
         },
       }}
     >
