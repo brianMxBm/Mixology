@@ -73,9 +73,7 @@ export default function RegisterScreen({ navigation }) {
         });
       })
       .catch((error) => {
-        if (error.code) {
-          updateNotification(setMessage, 'Registration Failed');
-        }
+        console.log(error);
       }); //TODO: Implement actual error handling.
   };
 
