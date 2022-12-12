@@ -172,7 +172,7 @@ export default function ProfileScreen() {
     console.log('no favorites');
   }
 
-  return userExists(currUser);
+  return userExists(currUser, newarr);
 }
 
 const renderCategoryItem = ({ item }) => {
@@ -244,7 +244,7 @@ function userDontExist() {
   );
 }
 
-function userExists(currUser) {
+function userExists(currUser,newarr) {
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -267,7 +267,7 @@ function userExists(currUser) {
           <FlatList
             showsVerticalScrollIndicator={true}
             numColumns={1}
-            data={drinkArray}
+            data={newarr}
             renderItem={renderCategoryItem}
             keyExtractor={(item) => item.id}
           />
