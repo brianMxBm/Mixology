@@ -38,7 +38,7 @@ export default function HomeScreen() {
       const docSnap = await getDoc(userRef);
       setCurrUser(docSnap.data());
     } catch (error) {
-      console.log(error); //TODO: Implement actualer
+      console.log(error); //TODO: Implement actual error handling
     }
   };
 
@@ -60,8 +60,8 @@ export default function HomeScreen() {
       <ScrollView>
         <Header user={currUser} />
         <SearchBar searchScreen={false} style={{ paddingTop: 25 }} />
-        <CategoryCard />
         <DailyDrink></DailyDrink>
+        <CategoryCard />
       </ScrollView>
     </View>
   );
