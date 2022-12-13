@@ -1,33 +1,53 @@
-import { View, Text, SafeAreaView, StyleSheet, Image } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import colors from '../theme/colors';
 
 const styles = StyleSheet.create({
-  header: {
-    marginTop: 20,
+  container: {
+    flex: 1,
+  },
+  profileImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 40,
+    borderWidth: 1,
+  },
+  headerWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
+    paddingTop: 20,
+    alignItems: 'center',
+  },
+  greetingStyle: {
+    fontFamily: 'Avenir-Roman',
+    fontSize: 32,
+    color: colors.lightBlack,
+    marginTop: 5,
+    fontWeight: 'light',
+  },
+  nameStyle: {
+    fontFamily: 'Avenir-Roman',
+    fontSize: 20,
+    color: colors.black,
+    fontWeight: 'bold',
   },
 });
-//TODO: All of this data is static, it needs to be queried.
-export default function DrinkCategoryHeader() {
+
+export default function DrinkHeader({ user }) {
+  if (!user) {
+    //TODO: Implemment loading animations.
+    return <Text>hey</Text>;
+  }
   return (
     <SafeAreaView>
-      <View style={styles.header}>
+      <View style={styles.headerWrapper}>
         <View>
-          <View style={{ flexDirection: 'row' }}>
-            <Text style={{ fontSize: 28 }}>Hey,</Text>
-            <Text style={{ fontSize: 28, fontWeight: 'bold', marginLeft: 10 }}>Brian</Text>
-          </View>
-          <Text style={{ marginTop: 5, fontSize: 22, color: colors.black }}>
-            What are you craving?
+          <Text style={styles.greetingStyle}>Take A Spirit Search,</Text>
+          <Text style={styles.nameStyle}>
+            {user.userName.charAt(0).toUpperCase() + user.userName.slice(1)}
           </Text>
         </View>
-        <Image
-          source={require('../images/profilePicture.png')}
-          style={{ height: 50, width: 50, borderRadius: 25 }}
-        />
       </View>
     </SafeAreaView>
   );

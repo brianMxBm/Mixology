@@ -8,6 +8,7 @@ import OnboardingScreen from '../assets/screens/OnboardingScreen';
 import SettingsScreen from '../assets/screens/SettingsScreen';
 import DrinkCategoryScreen from '../assets/screens/DrinkCategoryScreen';
 import CameraScreen from '../assets/screens/CameraScreen';
+import DrinkDetailScreen from '../assets/screens/DrinkDetailScreen';
 export const Screens = {
   HomeScreen,
   ProfileScreen,
@@ -19,4 +20,5 @@ export const Screens = {
   SettingsScreen,
   CameraScreen,
   DrinkCategoryScreen,
+  DrinkDetailScreen,
 };
