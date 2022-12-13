@@ -5,7 +5,6 @@ import { UserContext } from '../../utils/UserContext';
 import React, { useContext, useState, useEffect } from 'react';
 import SearchBar from '../components/SearchBar';
 import SimpleDrinkCard from '../components/SimpleDrinkCard';
-
 import DrinkHeader from '../components/DrinkHeader';
 
 export default function DrinkScreen() {
