@@ -27,6 +27,7 @@ export default function RootNavigation() {
           <Stack.Screen name="Forgot" component={Screens.ForgotPasswordScreen} />
           <Stack.Screen name="Profile" component={Screens.ProfileScreen} />
           <Stack.Screen name="Camera" component={Screens.CameraScreen} />
+          <Stack.Screen name="Details" component={Screens.DrinkDetailScreen} />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator
@@ -45,6 +46,7 @@ export default function RootNavigation() {
           <Stack.Screen name="Forgot" component={Screens.ForgotPasswordScreen} />
           <Stack.Screen name="Profile" component={Screens.ProfileScreen} />
           <Stack.Screen name="Camera" component={Screens.CameraScreen} />
+          <Stack.Screen name="Details" component={Screens.DrinkDetailScreen} />
         </Stack.Navigator>
       )}
     </NavigationContainer>
